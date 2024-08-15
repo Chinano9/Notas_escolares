@@ -1,3 +1,3 @@
 # Competencias
 
-- [Clase 1](Clase 1.md)
+- [Clase 1]("Clase 1.md")
