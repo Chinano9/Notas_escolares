@@ -4,6 +4,7 @@
 - [Analisis](Analisis.md)
 - [Diseño](Diseño.md)
 - [Verificacion](Verificacion.md)
+- [CMMI](CMMI.md)
 
 ## Qué es?
 
@@ -14,4 +15,7 @@ El proceso se basa en los estandares definidos en uno o en combinacion de los mo
 
 El asegurmiento de la calidad del software abarca todo el proceso de desarrollo.
 
+## Profesionales
 
+* [Kaoru Ishikawa](Kaoru.md)
+* 
