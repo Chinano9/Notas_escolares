@@ -18,4 +18,4 @@ El asegurmiento de la calidad del software abarca todo el proceso de desarrollo.
 ## Profesionales
 
 * [Kaoru Ishikawa](Kaoru.md)
-* 
+* [Joseph M. Juran](Joseph.md)
