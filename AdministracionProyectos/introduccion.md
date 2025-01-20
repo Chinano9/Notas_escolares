@@ -42,7 +42,7 @@ Se deben aclarar los problemas presentados durante la semana, y como se solucion
 ## Consideraciones
 Si existe informacion en el desarrollo la cual no se parte de desarrollo propio y no sea referenciada, se penalizara con 0.
 
-Si existieron observaciones por parte del profesor en alguna revision de als fases para corregir y no se realizaron las correcciones,
+Si existieron observaciones por parte del profesor en alguna revision de las fases para corregir y no se realizaron las correcciones,
 se penalizara con no revisar la siguiente fase.
 
 Por minuta faltante penalizara con 10 punos en fase, por cada reporte faltante se penalizan 20.

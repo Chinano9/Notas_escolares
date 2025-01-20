@@ -1,5 +1,7 @@
 # Tarea 1
 
+Planificacion de proyectos:
+
 - Red pert
 - Ruta critica
 - Holguras
