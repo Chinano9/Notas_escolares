@@ -7,3 +7,5 @@
 - [Aseguramiento de la calidad del software](SQA/index.md)
 - [Teoria de la computacion](TeoriaDeComputacion/index.md)
 - [Competencias comunicativas](Competencias/index.md)
+- [Programacion orientada a objetos](POO/index.md)
+
