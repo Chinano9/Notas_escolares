@@ -1,0 +1,3 @@
+la fase dos, debe mostrar todas sus actividades desarrolladas completamente, y adjuntar los artefactos generados por los mismos 
+
+La parte de programacion se realizara con una documentacion en doxygen 
