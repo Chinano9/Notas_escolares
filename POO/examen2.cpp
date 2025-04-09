@@ -5,6 +5,7 @@ private:
     int numerador;
     int denominador;
 
+    
 public:
     // Constructor
     Fraccion(int num = 0, int den = 1) : numerador(num), denominador(den) {
