@@ -32,7 +32,7 @@ una serie de acciones para lograr un objetivo
 ### Tipos de lenguajes
 
 - Alto nivel
-    * Lenguajes interpretados, o compilados que no tienen acceso directo a 
+* Lenguajes interpretados, o compilados que no tienen acceso directo a
       las actividades e instrucciones del procesador
 - Bajo nivel
 - Nivel intermedio
@@ -40,9 +40,9 @@ una serie de acciones para lograr un objetivo
 ### Diferencias entre interprete y compilador
 
 - Intreprete
-    * Intrerpreta el codigo mientras se ejecuta
+* Intrerpreta el codigo mientras se ejecuta
 - Compilador
-    * "Traduce" el codigo antes de la ejecucion
+* "Traduce" el codigo antes de la ejecucion
 
 ### Objetivos de los lenguajes de programacion
 
@@ -52,4 +52,3 @@ Facilita la capacitacion de instrucciones que el programador le da a la maquina.
 
 - **Sintaxis:** Reglas que deben seguirse para escribir el codigo.
 - **Semantica:** Se refiere al significado y objetivo de una determinada instruccion.
-

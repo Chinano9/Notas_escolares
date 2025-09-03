@@ -1,0 +1,347 @@
+@page
+@model Actividad1.Pages.IndexModel
+@{
+    ViewData["Title"] = "Restaurante - Sistema de Pedidos";
+}
+
+<h1 class="display-4 mb-4">Restaurante "El Buen Sabor"</h1>
+
+<div class="alert alert-info">
+    <p class="mb-0"><strong>Instrucciones:</strong> Selecciona un alimento, elige la opción y cantidad, luego haz clic en "Agregar". Al terminar, haz clic en "Realizar Pedido".</p>
+</div>
+
+@if (!Model.OrderCompleted)
+{
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Agregar a tu Pedido</h4>
+                </div>
+                <div class="card-body">
+                    <form method="post" asp-page-handler="AddToOrder">
+                        <div class="row align-items-end">
+                            <div class="col-md-4 mb-3">
+                                <label for="SelectedFood" class="form-label">Alimento:</label>
+                                <select id="SelectedFood" name="SelectedFood" class="form-select" onchange="updateOptions()">
+                                    <option value="">Selecciona un alimento</option>
+                                    @foreach (var item in Model.MenuItems)
+                                    {
+                                        <option value="@item.Name">@item.Name</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="SelectedOption" class="form-label">Opción:</label>
+                                <select id="SelectedOption" name="SelectedOption" class="form-select">
+                                    <option value="">Selecciona primero un alimento</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2 mb-3">
+                                <label for="Quantity" class="form-label">Cantidad:</label>
+                                <input type="number" id="Quantity" name="Quantity" class="form-control" min="1" value="1">
+                            </div>
+                            <div class="col-md-2 mb-3">
+                                <button type="submit" class="btn btn-success w-100">Agregar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Tu Pedido</h4>
+                </div>
+                <div class="card-body">
+                    @if (Model.OrderDetails.Any())
+                    {
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Alimento</th>
+                                    <th>Opción</th>
+                                    <th>Precio</th>
+                                    <th>Cantidad</th>
+                                    <th>Total</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < Model.OrderDetails.Count; i++)
+                                {
+                                    var item = Model.OrderDetails[i];
+                                    <tr>
+                                        <td>@item.Food</td>
+                                        <td>@item.Option</td>
+                                        <td>$@item.Price</td>
+                                        <td>@item.Quantity</td>
+                                        <td>$@item.Total</td>
+                                        <td>
+                                            <form method="post" asp-page-handler="RemoveItem">
+                                                <input type="hidden" name="index" value="@i" />
+                                                <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th colspan="4" class="text-end">Subtotal:</th>
+                                    <th>$@Model.OrderDetails.Sum(item => item.Total)</th>
+                                    <td></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                        <form method="post">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="checkbox" id="applyDiscount" name="applyDiscount" value="true" @(Model.ApplyDiscount ? "checked" : "") />
+                                        <label class="form-check-label" for="applyDiscount">
+                                            Aplicar cupón de descuento (10%)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 text-end">
+                                    <button type="submit" class="btn btn-primary btn-lg">Realizar Pedido</button>
+                                </div>
+                            </div>
+                        </form>
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning">
+                            <p class="mb-0">No hay alimentos en tu pedido. Agrega algunos para continuar.</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0">Menú</h4>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <strong>Hamburguesa</strong>
+                            <ul>
+                                <li>Sola: $80</li>
+                                <li>Combo: $120</li>
+                            </ul>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Hotdog</strong>
+                            <ul>
+                                <li>Solo: $50</li>
+                                <li>Combo: $90</li>
+                            </ul>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Pizza</strong>
+                            <ul>
+                                <li>Individual: $50</li>
+                                <li>Mediana: $80</li>
+                                <li>Grande: $120</li>
+                            </ul>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Papas</strong>
+                            <ul>
+                                <li>Chica: $20</li>
+                                <li>Mediana: $40</li>
+                            </ul>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Helado</strong>
+                            <ul>
+                                <li>Sencillo: $20</li>
+                                <li>Doble: $30</li>
+                            </ul>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Sodas</strong>
+                            <ul>
+                                <li>Regular: $30</li>
+                            </ul>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Agua</strong>
+                            <ul>
+                                <li>Regular: $20</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0">¡Pedido Completado!</h4>
+                </div>
+                <div class="card-body">
+                    <h3>Resumen del Pedido</h3>
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Alimento</th>
+                                <th>Cantidad</th>
+                                <th>Precio Unitario</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.OrderDetails)
+                            {
+                                <tr>
+                                    <td>@item.Food (@item.Option)</td>
+                                    <td>@item.Quantity</td>
+                                    <td>$@item.Price</td>
+                                    <td>$@item.Total</td>
+                                </tr>
+                            }
+                            <tr class="table-info">
+                                <td colspan="3" class="text-end fw-bold">Subtotal:</td>
+                                <td class="fw-bold">$@Model.Subtotal</td>
+                            </tr>
+                            @if (Model.ApplyDiscount)
+                            {
+                                <tr class="table-info">
+                                    <td colspan="3" class="text-end fw-bold">Descuento (10%):</td>
+                                    <td class="fw-bold text-danger">-$@Model.Discount</td>
+                                </tr>
+                            }
+                            <tr class="table-success">
+                                <td colspan="3" class="text-end fw-bold">TOTAL A PAGAR:</td>
+                                <td class="fw-bold">$@Model.Total</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="alert alert-success">
+                        <p class="mb-0 text-center">¡Gracias por tu compra!</p>
+                    </div>
+
+                    <form method="post" asp-page-handler="Reset">
+                        <button type="submit" class="btn btn-primary">Realizar Nuevo Pedido</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h4 class="mb-0">Información</h4>
+                </div>
+                <div class="card-body">
+                    <p>Gracias por tu pedido. Será preparado en breve.</p>
+                    <p>Tiempo estimado de preparación: 15-20 minutos.</p>
+                    <p>Para cualquier consulta, contacta al personal de servicio.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script>
+        // Función para actualizar las opciones según el alimento seleccionado
+        function updateOptions() {
+            const foodSelect = document.getElementById('SelectedFood');
+            const optionSelect = document.getElementById('SelectedOption');
+
+            // Limpiar las opciones actuales
+            optionSelect.innerHTML = '';
+
+            if (!foodSelect.value) {
+                optionSelect.innerHTML = '<option value="">Selecciona primero un alimento</option>';
+                return;
+            }
+
+            // Datos del menú
+            const menuData = [
+                {
+                    name: "Hamburguesa",
+                    options: [
+                        { name: "Sola", price: 80 },
+                        { name: "Combo", price: 120 }
+                    ]
+                },
+                {
+                    name: "Hotdog",
+                    options: [
+                        { name: "Solo", price: 50 },
+                        { name: "Combo", price: 90 }
+                    ]
+                },
+                {
+                    name: "Pizza",
+                    options: [
+                        { name: "Individual", price: 50 },
+                        { name: "Mediana", price: 80 },
+                        { name: "Grande", price: 120 }
+                    ]
+                },
+                {
+                    name: "Papas",
+                    options: [
+                        { name: "Chica", price: 20 },
+                        { name: "Mediana", price: 40 }
+                    ]
+                },
+                {
+                    name: "Helado",
+                    options: [
+                        { name: "Sencillo", price: 20 },
+                        { name: "Doble", price: 30 }
+                    ]
+                },
+                {
+                    name: "Sodas",
+                    options: [
+                        { name: "Regular", price: 30 }
+                    ]
+                },
+                {
+                    name: "Agua",
+                    options: [
+                        { name: "Regular", price: 20 }
+                    ]
+                }
+            ];
+
+            // Encontrar el alimento seleccionado
+            const selectedFood = menuData.find(item => item.name === foodSelect.value);
+
+            if (selectedFood && selectedFood.options && selectedFood.options.length > 0) {
+                // Agregar las opciones disponibles para este alimento
+                selectedFood.options.forEach(option => {
+                    const optElement = document.createElement('option');
+                    optElement.value = option.name;
+                    optElement.textContent = `${option.name} ($${option.price})`;
+                    optionSelect.appendChild(optElement);
+                });
+            } else {
+                optionSelect.innerHTML = '<option value="">No hay opciones disponibles</option>';
+            }
+        }
+
+        // Inicializar cuando se carga la página
+        document.addEventListener('DOMContentLoaded', function() {
+            updateOptions();
+        });
+    </script>
+}

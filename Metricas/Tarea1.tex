@@ -1,0 +1,381 @@
+%Template for PhD reports By: Roberto Contreras
+%Comment out two column if need two column writing
+
+\documentclass[11pt]{article}
+
+%\documentclass[11pt, twocolumn]{report}
+
+%Package to generate latin text (Only for testing)
+\usepackage{lipsum}
+
+\usepackage{float}
+
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+%AMS packages for mathematical symbols
+
+%package to include pictures and images
+\usepackage{graphicx}
+
+%Package to setup page layout
+\usepackage[margin=1in, includefoot, includehead]{geometry}
+
+% Header and Footer Stuff (Cargarlo antes de biblatex y hyperref si se usa)
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[R]{\myTitle}
+\fancyfoot[L]{Ingenieria en Software}
+\fancyfoot[R]{\thepage}
+\renewcommand{\footrulewidth}{1pt}
+
+% Hyperlinks (cargar antes de biblatex si se usa)
+\usepackage[hidelinks]{hyperref} % Mantiene la opción de hidelinks, ya que es la que usaste.
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+}
+
+% BibLaTeX packages (cargar DESPUÉS de hyperref)
+\usepackage{booktabs}
+\usepackage[backend=biber, style=apa, natbib=true]{biblatex}
+\usepackage{longtable}
+% Definir las referencias
+\addbibresource{references.bib} % Archivo .bib donde estarán tus referencias
+
+
+% Document Variables
+\newcommand{\myTitle}{Modelos para la Evaluación de Proyectos de Tecnologías de la Información}
+\newcommand{\myName}{Fernando Ponce Solis- 222953}
+\newcommand{\myClass}{Administración y evaluación de proyectos de tecnologías de información.}
+\newcommand{\myTecher}{Abraham Najera}
+\newcommand{\myDate}{24 de mayo de 2025}
+
+
+%Document Start
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        \includegraphics[scale=0.75]{UACJ.png}\\ % Asegúrate de que esta imagen exista en la misma carpeta o ruta.
+        \huge{\textbf{Universidad Autónoma\\de Ciudad Juárez}} \\
+        [0.25in]
+
+        \textbf{\Large{Instituto de Ingeniería y Tecnología}}\\
+        \Large{Departamento de Ingeniería Eléctrica y Computación}\\
+        \Large{Ingenieria en software}\\
+        [1in]
+
+        \line(1,0){400}\\
+        [2mm]
+        \textsc{\Large{\myTitle}} \\
+        \line(1,0){400} \\
+        [1in]
+    \end{center}
+    \begin{center}
+        \textsc{\Large \myName}    \\
+        [.2in]
+        \myClass\\
+    \end{center}
+\end{titlepage}
+
+% Table of Contents (si la quieres, va aquí)
+% \clearpage
+% \tableofcontents
+% \clearpage % Para que la tabla de contenidos empiece en una página nueva
+
+% If need adding sections, please uncomment next lines
+% Before TOC
+\pagenumbering{roman} % Para numerar las páginas preliminares en romano
+\section{Introduccion}
+\addcontentsline{toc}{section}{\numberline{}Introduccion} % Para añadir la introducción a la tabla de contenidos como una sección sin número
+
+% Aquí va el texto de tu introducción
+En el ámbito de la ingeniería de software y la gestión empresarial contemporánea, la evaluación y dirección efectiva de los proyectos de Tecnologías de la Información (TI) se han consolidado como un pilar fundamental para el logro de la ventaja competitiva y el éxito organizacional. Como futuros profesionales en el campo del software, reconocemos que nuestro rol trasciende el mero desarrollo técnico; es imperativo que las soluciones que concebimos y construimos aporten un valor cuantificable al negocio y se sincronicen con los objetivos estratégicos de la entidad. En este contexto, la industria ha adoptado y perfeccionado diversos marcos de trabajo y metodologías que sirven como guías esenciales para navegar la complejidad inherente a los proyectos de TI, destacándose el Project Management Body of Knowledge (PMBOK), Control Objectives for Information and Related Technologies (COBIT) e Information Technology Infrastructure Library (ITIL) como referentes indiscutibles.
+
+La creciente dependencia de las organizaciones en la tecnología de la información subraya la necesidad de una gestión de TI "efectiva y eficiente". Esta gestión no solo implica el control de los recursos, sino también la alineación de las decisiones de TI con los procesos, recursos y responsabilidades dentro de la organización. La importancia de esta alineación estratégico-organizacional ha sido reiterada consistentemente, posicionándose como una preocupación principal en encuestas de alta dirección durante años. Por ejemplo, "la alineación de TI y Negocio" fue la preocupación número uno en cinco de los últimos seis años, según la encuesta anual de la Society for Information Management. De hecho, "asegurar que la TI y el negocio tengan una relación de alineación más madura se reconoce como algo crítico para el éxito de una organización".
+
+Tradicionalmente, la gestión de proyectos de TI ha enfrentado desafíos significativos, desde el control de grandes iniciativas de desarrollo hasta las dificultades de estimar y administrar estos esfuerzos para entregar resultados confiables. Sin embargo, la evolución ha impulsado la creación de "varias metodologías, herramientas y estándares" para auxiliar la gestión de TI, buscando fundamentalmente asegurar que la tecnología contribuya "con los objetivos del negocio y los resultados de la organización". A pesar de la amplia gama de opciones disponibles, la aplicación de una única metodología de forma independiente a menudo resulta insuficiente para abordar todas las necesidades de la gestión de TI. Esta limitación inherente ha fomentado la búsqueda de "soluciones más integrales" que combinan los puntos fuertes de diferentes marcos, dando lugar a un enfoque holístico para la gobernanza y gestión de las TI. En las siguientes secciones, exploraremos en detalle PMBOK, COBIT e ITIL, examinando sus características fundamentales, su valor para el negocio y su papel en el panorama de la evaluación de proyectos de TI.
+
+\cleardoublepage % Para que la primera sección numerada empiece en una página nueva.
+\pagenumbering{arabic} % Para volver a la numeración arábiga para el cuerpo del documento
+
+\section{1. La Necesidad de Medir el Software}
+
+La ingeniería de software, a diferencia de otras disciplinas ingenieriles como la civil o la mecánica, no se fundamenta en leyes físicas cuantitativas básicas (Asumano, 2012). Esta particularidad ha impulsado la búsqueda de métodos alternativos para la evaluación y el control de sus productos y procesos. En este contexto, se ha desarrollado la capacidad de obtener un conjunto de medidas indirectas que proporcionan una indicación de la calidad de las representaciones del software (Asumano, 2012).
+
+La medición en software ha emergido como un proceso fundamental en el desarrollo y la gestión de proyectos tecnológicos. Su propósito es cuantificar diversos aspectos del software, incluyendo su tamaño, calidad, complejidad, el esfuerzo requerido para su desarrollo y su impacto en los usuarios o sistemas en los que se implementa (Arteco-Consulting, s.f.; Pressman, 2010). Este enfoque sistemático es esencial para la evolución de la disciplina.
+
+El objetivo primordial de la medición del software es generar datos objetivos que faciliten la optimización de procesos y permitan la previsión de resultados. Esta capacidad es esencial para la toma de decisiones informadas y para impulsar la mejora continua a lo largo del ciclo de vida del software (Arteco-Consulting, s.f.; Pressman, 2010). La implementación de mediciones transforma la evaluación subjetiva o basada en la experiencia intuitiva en un proceso sistemático y basado en evidencia. Un gestor de proyectos, al utilizar métricas, puede rastrear riesgos potenciales y descubrir las áreas problemáticas antes de que se vuelvan críticas (Pressman, 2010; Torrell Delgado, s.f.). Esto implica que la medición no es solo un medio para evaluar la calidad del producto final, sino un mecanismo indispensable para aumentar la predictibilidad del proyecto, mitigar desviaciones y reducir la probabilidad de fracasos (UNNE, 2014).
+
+A pesar de la disponibilidad de herramientas y estándares de calidad, la industria del software aún enfrenta desafíos como el fracaso de proyectos, retrasos y problemas de calidad. Esto resalta la importancia crítica de una gestión adecuada de los requerimientos y la aplicación rigurosa de estándares, donde la medición juega un papel central (Repositorio UNAL, s.f.). La capacidad de medir permite identificar las causas raíz de estos problemas y aplicar medidas correctivas de manera oportuna.
+
+La implementación de métricas permite a los equipos de desarrollo mejorar la eficiencia operativa, prever con mayor precisión los recursos necesarios y los tiempos de entrega, y evaluar el rendimiento y la estabilidad del software a lo largo de su ciclo de vida (Arteco-Consulting, s.f.; Pressman, 2010). Estos beneficios se traducen directamente en una optimización de recursos y una mayor fiabilidad en la planificación. La medición contribuye significativamente a la mejora continua, al establecer procesos estandarizados con insumos y resultados medibles. Esto conduce a una reducción de costos y riesgos, y fomenta la eficiencia, lo que a su vez permite a las empresas ofrecer productos de mayor calidad y asegurar el cumplimiento de los tiempos previstos (UNNE, 2014). Un ingeniero de software competente y una administración eficaz deben incorporar la medición como una práctica esencial para garantizar la consecución de altos niveles de calidad en los productos y procesos (Pressman, 2010; Torrell Delgado, s.f.).
+
+Al reducir costos, mitigar riesgos y aumentar la eficiencia (UNNE, 2014), las organizaciones no solo optimizan sus operaciones, sino que también mejoran su capacidad para entregar productos de mayor calidad y cumplir con los plazos establecidos. Este desempeño superior se traduce directamente en una ventaja competitiva en el mercado. La exigencia de estándares internacionales como CMMI de una gestión cuantitativa de proyectos de software (UNNE, 2014) es un claro indicador de que la capacidad de medir y gestionar cuantitativamente es un sello distintivo de la madurez organizacional.
+
+El proceso de medición, tal como lo propone Pressman, abarca etapas clave como la formulación (obtención de medidas y métricas apropiadas), la recolección de datos, el análisis (cálculo de métricas y aplicación de herramientas matemáticas), la interpretación de resultados (evaluación para obtener una comprensión de la calidad) y la realimentación (transmisión de recomendaciones al equipo) (Arteco-Consulting, s.f.; Pressman, 2010; Torrell Delgado, s.f.). Este enfoque cíclico subraya la naturaleza iterativa y orientada a la mejora de la medición. Este proceso, estructurado de manera sistemática, es un ciclo dinámico y continuo que permite a las organizaciones aprender de sus experiencias pasadas, documentar las lecciones aprendidas y evitar la repetición de errores (UNNE, 2014). Al convertir los datos de medición en un repositorio y un recurso organizacional (UNNE, 2014), se fomenta un entorno de aprendizaje continuo que no solo optimiza los proyectos actuales, sino que también construye una base de conocimiento institucional. La educación y capacitación en el ámbito del software son cada vez más relevantes para lograr implementaciones exitosas y reducir pérdidas (Institución Badra, s.f.).
+
+\section{2. Conceptos Medibles: Medida, Medición y Métrica en Software}
+
+En el ámbito de las métricas de software, es crucial diferenciar entre los conceptos de medida y medición, ya que representan aspectos distintos del proceso de cuantificación. Una \textbf{medida} se define como una indicación cuantitativa de la extensión, cantidad, dimensión, capacidad o tamaño de un atributo específico de un producto o proceso (Asumano, 2012; IEEE, 1990; ISO, 2001; McCabe, 1976; McCall, 1977; Olsina, 2007; Slideshare, s.f.). Constituye un valor numérico o una cuantificación específica capturada en un punto determinado en el tiempo o lugar. Por ejemplo, el número de líneas de código en un módulo o la cantidad de defectos encontrados en una fase de prueba son medidas.
+
+Por otro lado, la \textbf{medición} se refiere al acto o proceso de determinar una medida (Asumano, 2012; Copenhagen Business School, s.f.; IEEE, 1990; ISO, 2001; McCabe, 1976; McCall, 1977; Olsina, 2007; Slideshare, s.f.; Castaño-Henríquez, s.f.). Es la actividad de asociar valores numéricos a los atributos de productos o procesos de software (Castaño-Henríquez, s.f.). La medición implica la aplicación de técnicas, herramientas y procedimientos para obtener esos valores. Por ejemplo, la ejecución de un análisis estático de código para contar las líneas de código o la supervisión de un sistema para registrar el tiempo de inactividad son actos de medición. La distinción entre "medida" y "medición" es un pilar fundamental para la claridad conceptual en el ámbito de las métricas de software. Una "medida" es el resultado tangible, el dato cuantitativo o el valor numérico obtenido; es un estado estático en un momento dado (Asumano, 2012). Por el contrario, la "medición" es el proceso dinámico y la actividad que se lleva a cabo para obtener esa medida (Castaño-Henríquez, s.f.; IEEE, 1990; ISO, 2001; McCabe, 1976; McCall, 1977; Olsina, 2007; Slideshare, s.f.).
+
+Una \textbf{métrica} de software, según la definición del IEEE (1990), se refiere a la medida cuantitativa del grado en que un sistema, componente o proceso posee un atributo determinado (Asumano, 2012; IEEE, 1990; ISO, 2001; McCabe, 1976; McCall, 1977; Olsina, 2007; Slideshare, s.f.). Michael (1999) la describe como la aplicación continua de mediciones basadas en técnicas para el proceso de desarrollo del software y sus productos, con el fin de proporcionar información relevante y oportuna que permita al administrador mejorar el proceso y sus productos (Michael, 1999; Ejiogu, 1991; Torrell Delgado, s.f.). Las métricas, por lo tanto, transforman las medidas en indicadores significativos.
+
+Las métricas se caracterizan por ser recopiladas de manera sistemática a lo largo de todos los proyectos y durante períodos prolongados. Su objetivo principal es proporcionar un conjunto de indicadores que impulsen la mejora continua del proceso de desarrollo (Pressman, 2010; Torrell Delgado, s.f.). Para ser efectivas, las métricas deben poseer características fundamentales: ser simples y fáciles de calcular, empíricas e intuitivamente persuasivas (es decir, que su valor refleje de manera coherente el atributo medido), consistentes en el empleo de unidades y tamaños, independientes del lenguaje de programación (basadas en el análisis o diseño), y constituir un mecanismo eficaz para la realimentación de calidad (Michael, 1999; Ejiogu, 1991; Torrell Delgado, s.f.).
+
+Para que la calidad del software sea efectivamente medible, es indispensable la utilización de procesos, métodos o valores estándar que sirvan como referencia y permitan la cuantificación (Asumano, 2012; Copenhagen Business School, s.f.; IEEE, 1990; ISO, 2001; McCabe, 1976; McCall, 1977; Olsina, 2007; Slideshare, s.f.). La medición es una actividad intrínseca a la ingeniería de software que asocia valores numéricos a los atributos de productos o procesos de software con diversos fines, incluyendo la caracterización, evaluación, pronóstico y mejora continua (Castaño-Henríquez, s.f.). La base de las medidas de calidad del software reside en el cumplimiento de los requisitos. Una falta de concordancia con los requisitos explícitamente establecidos se considera una deficiencia en la calidad (Asumano, 2012; IEEE, 1990; ISO, 2001; McCabe, 1976; McCall, 1977; Olsina, 2007; Slideshare, s.f.). Los requisitos del software son, por lo tanto, el punto de partida para cualquier evaluación de calidad. La calidad del software es un concepto inherentemente abstracto y complejo, no directamente observable en su totalidad. Para que sea medible, debe ser descompuesta en atributos más pequeños, concretos y manejables (Castaño-Henríquez, s.f.; IEEE, 1990; ISO, 2001; McCabe, 1976; McCall, 1977; Olsina, 2007; Slideshare, s.f.). Esta descomposición permite asociar valores numéricos a propiedades específicas del software, haciendo que la calidad, en su conjunto, sea cuantificable y analizable.
+
+\begin{table}[h!]
+\centering
+\caption{Conceptos Fundamentales de Medición en Ingeniería de Software}
+\begin{tabular}{|l|l|l|l|}
+\hline
+Concepto | Definición | Propósito | Ejemplo \\
+\hline
+\textbf{Medida} | Indicación cuantitativa de la extensión, cantidad o tamaño de un atributo en un punto específico (Asumano, 2012; IEEE, 1990; ISO, 2001; McCabe, 1976; McCall, 1977; Olsina, 2007; Slideshare, s.f.). | Cuantificar una característica específica. | El número de 1500 líneas de código en un módulo. \\
+\hline
+\textbf{Medición} | El acto o proceso de determinar una medida, asociando valores numéricos a atributos (Castaño-Henríquez, s.f.; IEEE, 1990; ISO, 2001; McCabe, 1976; McCall, 1977; Olsina, 2007; Slideshare, s.f.). | Obtener un valor cuantitativo para un atributo. | El proceso de ejecutar una herramienta de análisis de código para contar las líneas de código de un proyecto. \\
+\hline
+\textbf{Métrica} | Medida cuantitativa del grado en que un sistema, componente o proceso posee un atributo determinado (Asumano, 2012; IEEE, 1990; ISO, 2001; McCabe, 1976; McCall, 1977; Olsina, 2007; Slideshare, s.f.). | Proporcionar información relevante para la mejora y toma de decisiones. | La Densidad de Defectos de 0.5 defectos por cada mil líneas de código, que indica la calidad del software. \\
+\hline
+\end{tabular}
+\end{table}
+
+\section{3. Atributos de Medición en la Ingeniería de Software}
+
+Cualquier característica que se desee medir o predecir en un software se considera un atributo de una entidad específica, ya sea un producto, un proceso o un recurso asociado a este (Vaneduc, s.f.; Screpnik, s.f.). Cada entidad de software posee múltiples atributos susceptibles de ser medidos, lo que resalta la complejidad inherente a la evaluación del software.
+
+Es fundamental establecer una distinción clara entre atributos internos y externos, así como entre medidas directas e indirectas (Vaneduc, s.f.; Screpnik, s.f.). Los atributos internos son aquellos que pueden medirse puramente en términos del software mismo, como el tamaño del código o la complejidad ciclomática, sin necesidad de ejecutarlo. Por otro lado, los atributos externos a menudo requieren la observación de su comportamiento en un entorno operativo o su impacto en el usuario, como la usabilidad, la fiabilidad o el rendimiento. La medición de los atributos internos del software sirve como el primer indicador del cumplimiento y la calidad de los atributos externos, como la mantenibilidad y la funcionalidad (UNNE, 2014).
+
+Un atributo de calidad se define como una propiedad medible de un sistema que indica el grado en que este satisface las necesidades y expectativas de las partes interesadas (Slideshare, s.f.; Zapata, s.f.). Estos atributos también son conocidos como requisitos no funcionales, características de arquitectura o propiedades de calidad (Zapata, s.f.). Su correcta identificación es vital para el éxito de un proyecto.
+
+El Modelo de Calidad de McCall (1977) es pionero en la clasificación de factores de calidad, estructurándolos en tres aspectos principales: características operativas (orientadas al usuario), capacidad de cambios y adaptabilidad a nuevos entornos (ambas orientadas al desarrollador) (Asumano, 2012; IEEE, 1990; ISO, 2001; McCabe, 1976; McCall, 1977; Olsina, 2007; Slideshare, s.f.; Callejas-Cuervo et al., 2017). Este modelo descompone la calidad en 23 criterios y sus métricas asociadas, abarcando dimensiones como exactitud, fiabilidad, usabilidad, eficiencia, mantenibilidad, flexibilidad, facilidad de prueba, portabilidad, reusabilidad e interoperatividad (Asumano, 2012; IEEE, 1990; ISO, 2001; McCabe, 1976; McCall, 1977; Olsina, 2007; Slideshare, s.f.).
+
+El estándar ISO/IEC 9126 (ISO, 2001) identifica seis atributos de calidad principales: funcionalidad, confiabilidad, usabilidad, eficiencia, mantenibilidad y portabilidad, cada uno desglosado en subfactores específicos (Asumano, 2012; IEEE, 1990; ISO, 2001; McCabe, 1976; McCall, 1977; Olsina, 2007; Slideshare, s.f.). Este estándar ha evolucionado hacia la serie ISO 25000 (SQuaRE), que amplía los atributos de calidad del producto, incluyendo idoneidad funcional, eficiencia de desempeño, compatibilidad, usabilidad, fiabilidad, seguridad, mantenibilidad y portabilidad (Slideshare, s.f.).
+
+Una métrica, en su esencia, consiste en la medición numérica de un atributo (Screpnik, s.f.). La existencia misma de las métricas se debe a la imperiosa necesidad de obtener información cuantitativa para la toma de decisiones informadas en el desarrollo de software (Screpnik, s.f.). Los atributos de calidad constituyen insumos de vital importancia para el trabajo de un arquitecto de software, ya que guían y orientan muchas de las actividades clave que estos profesionales realizan a lo largo del ciclo de vida del proyecto (Zapata, s.f.). La evaluación de atributos abstractos, como la mantenibilidad o la comprensibilidad, se logra eficazmente mediante el uso de métricas de software. Estas métricas proporcionan una metodología para representar estos atributos cualitativos en valores numéricos cuantificables (UNNE, 2014).
+
+\begin{table}[h!]
+\centering
+\caption{Ejemplos de Atributos de Calidad del Software y sus Métricas Asociadas}
+\begin{tabular}{|l|l|l|l|}
+\hline
+Atributo de Calidad | Definición Breve | Métricas Asociadas (Ejemplos) | Fuente (Modelo/Estándar) \\
+\hline
+\textbf{Funcionalidad} | Capacidad del software para satisfacer las necesidades especificadas (Asumano, 2012; IEEE, 1990; ISO, 2001; McCabe, 1976; McCall, 1977; Olsina, 2007; Slideshare, s.f.). | Métrica 1 (Facilidad de seguimiento), Puntos de Función (Arteco-Consulting, s.f.; Pressman, 2010; Asumano, 2012; IEEE, 1990; ISO, 2001; McCabe, 1976; McCall, 1977; Olsina, 2007; Slideshare, s.f.). | McCall (1977), ISO 9126 (2001) \\
+\hline
+\textbf{Fiabilidad} | Capacidad del software para mantener su nivel de desempeño bajo condiciones establecidas (Asumano, 2012; IEEE, 1990; ISO, 2001; McCabe, 1976; McCall, 1977; Olsina, 2007; Slideshare, s.f.). | Densidad de Defectos, Tiempo de Recuperación, Tolerancia a fallas (Arteco-Consulting, s.f.; Pressman, 2010; Asumano, 2012; Copenhagen Business School, s.f.; IEEE, 1990; ISO, 2001; McCabe, 1976; McCall, 1977; Olsina, 2007; Slideshare, s.f.). | McCall (1977), ISO 9126 (2001) \\
+\hline
+\textbf{Usabilidad} | Esfuerzo necesario para aprender a operar el sistema y su atractivo (Asumano, 2012; IEEE, 1990; ISO, 2001; McCabe, 1976; McCall, 1977; Olsina, 2007; Slideshare, s.f.). | Operabilidad, Entrenamiento, Entradas/Salidas de interfaz de usuario (Asumano, 2012; Copenhagen Business School, s.f.; IEEE, 1990; ISO, 2001; McCabe, 1976; McCall, 1977; Olsina, 2007; Slideshare, s.f.). | McCall (1977), ISO 9126 (2001) \\
+\hline
+\textbf{Mantenibilidad} | Esfuerzo necesario para localizar y arreglar errores o realizar modificaciones (Asumano, 2012; IEEE, 1990; ISO, 2001; McCabe, 1976; McCall, 1977; Olsina, 2007; Slideshare, s.f.; Screpnik, s.f.). | Complejidad Ciclomática, Simplicidad del diseño, Estabilidad, Cantidad de comentarios (Arteco-Consulting, s.f.; Pressman, 2010; Asumano, 2012; IEEE, 1990; ISO, 2001; McCabe, 1976; McCall, 1977; Olsina, 2007; Slideshare, s.f.). | McCall (1977), ISO 9126 (2001) \\
+\hline
+\textbf{Portabilidad} | Habilidad del software para ser transferido de un entorno a otro (Asumano, 2012; IEEE, 1990; ISO, 2001; McCabe, 1976; McCall, 1977; Olsina, 2007; Slideshare, s.f.; Screpnik, s.f.). | Independencia de sistema/máquina, Adaptabilidad, Facilidad de instalación (Asumano, 2012; Copenhagen Business School, s.f.; IEEE, 1990; ISO, 2001; McCabe, 1976; McCall, 1977; Olsina, 2007; Slideshare, s.f.; Screpnik, s.f.). | McCall (1977), ISO 9126 (2001) \\
+\hline
+\textbf{Eficiencia} | Relación entre el nivel de desempeño y la cantidad de recursos empleados (Asumano, 2012; IEEE, 1990; ISO, 2001; McCabe, 1976; McCall, 1977; Olsina, 2007; Slideshare, s.f.). | Requisitos de desempeño asignados, Eficiencia del uso de datos/almacenamiento (Asumano, 2012; Copenhagen Business School, s.f.; IEEE, 1990; ISO, 2001; McCabe, 1976; McCall, 1977; Olsina, 2007; Slideshare, s.f.). | McCall (1977), ISO 9126 (2001) \\
+\hline
+\textbf{Seguridad} | Capacidad de proteger información y datos para que personas o sistemas no autorizados no puedan acceder a ellos (Asumano, 2012; Copenhagen Business School, s.f.; IEEE, 1990; ISO, 2001; McCabe, 1976; McCall, 1977; Olsina, 2007; Slideshare, s.f.). | Control de acceso, Auditoría de acceso (Asumano, 2012; Copenhagen Business School, s.f.; IEEE, 1990; ISO, 2001; McCabe, 1976; McCall, 1977; Olsina, 2007; Slideshare, s.f.). | ISO 9126 (2001) \\
+\hline
+\end{tabular}
+\end{table}
+
+\section{4. Modelos de Calidad Aplicados a la Medición de Software}
+
+Los modelos de calidad de software son documentos estructurados que integran las mejores prácticas de la industria y proponen áreas clave de gestión para que las organizaciones las enfaticen. Su implementación permite la medición sistemática del progreso de la calidad (Callejas-Cuervo et al., 2017). Estos modelos son fundamentales para establecer un marco de trabajo que guíe el desarrollo y la evaluación del software.
+
+Estos modelos están diseñados para monitorear y evaluar cada etapa del proceso de construcción del producto de software. Proporcionan una estructura jerárquica que incluye factores de calidad, criterios y métricas, con el objetivo de reducir la subjetividad inherente a la evaluación de la calidad (Callejas-Cuervo et al., 2017). La implementación de modelos de calidad es un paso crucial para que las empresas se comprometan con la mejora continua de sus procesos y, en muchos casos, obtengan certificaciones que validen la calidad de sus productos y servicios (Callejas-Cuervo et al., 2017).
+
+Los modelos de calidad orientados al proceso se centran en la planificación, el control y el monitoreo continuo de los aspectos de calidad a lo largo de cada etapa del desarrollo del software, con el fin de minimizar riesgos y asegurar un proceso robusto (Callejas-Cuervo et al., 2017). Su objetivo es mejorar la forma en que se desarrolla el software.
+
+\begin{itemize}
+    \item \textbf{CMMI (Capability Maturity Model Integration):} Es uno de los modelos más ampliamente adoptados en la industria para verificar el cumplimiento de estándares de calidad a través de un sistema de niveles de madurez (Initial, Managed, Defined, Quantitatively Managed, Optimizing) (Callejas-Cuervo et al., 2017; Ardila et al., 2013; Solarte et al., 2009; Otálora et al., 2011). CMMI define el "qué" se debe hacer, pero no el "cómo", lo que requiere que las organizaciones lo refuercen con sus propias prácticas. Si bien está optimizado para grandes organizaciones, su éxito depende significativamente de la apropiación y el compromiso de los equipos que lo implementan (Ardila et al., 2013; Solarte et al., 2009; Otálora et al., 2011).
+    \item \textbf{ISO/IEC 15504 (SPICE - Software Process Improvement Capability Determination):} Este estándar es un modelo para la mejora y evaluación de procesos de software, también estructurado en niveles de madurez. Se destaca por su adaptabilidad a pequeñas y medianas empresas (PYMES), buscando mejorar la calidad de sus procesos de producción y productos para aumentar su competitividad en el mercado (Ardila et al., 2013; Solarte et al., 2009; Otálora et al., 2011).
+\end{itemize}
+
+Los modelos de calidad orientados al producto tienen como objetivo principal especificar y evaluar el cumplimiento de los criterios de calidad inherentes al producto de software. Para ello, se valen de medidas internas (derivadas del código o diseño) y/o externas (derivadas del comportamiento en uso) (Callejas-Cuervo et al., 2017). Su enfoque es asegurar que el software entregado cumpla con los estándares de calidad.
+
+\begin{itemize}
+    \item \textbf{Modelo de McCall:} Considerado un modelo pionero en la evaluación de la calidad del software, se estructura en tres etapas: factores de calidad, criterios y métricas. Sus once criterios base incluyen la exactitud, fiabilidad, eficiencia, integridad, usabilidad, mantenibilidad, facilidad de prueba, flexibilidad, portabilidad, reusabilidad e interoperabilidad (Khosravi, 2004; Callejas-Cuervo et al., 2017). Este modelo proporciona una visión detallada de los atributos de calidad desde diferentes perspectivas.
+    \item \textbf{ISO/IEC 9126:} Un estándar internacional que se basa en el modelo de McCall y está diseñado para desarrolladores, aseguradores de calidad y evaluadores. Se divide en cuatro partes (modelo de calidad, métricas externas, métricas internas y métricas de calidad de uso) y se centra en seis características principales: funcionalidad, fiabilidad, usabilidad, eficiencia, mantenibilidad y portabilidad (Ango, 2014; Callejas-Cuervo et al., 2017). Este estándar proporciona un marco comprensivo para la evaluación de la calidad del producto.
+    \item \textbf{GQM (Goal Question Metric):} Este modelo proporciona una metodología sistemática para definir métricas que permitan medir el progreso y los resultados del proyecto. Opera articulando objetivos claros, refinándolos en preguntas específicas y definiendo métricas que respondan a esas preguntas (Fenton \& Pfleeger, 1997; Villarroel, 1999; Callejas-Cuervo et al., 2017). GQM asegura que la medición esté siempre orientada a un objetivo concreto.
+\end{itemize}
+
+La implementación de modelos de calidad de software ha sido ampliamente adoptada por empresas desarrolladoras de software, aunque es importante señalar que algunos modelos son adaptables a contextos empresariales con fines diferentes al desarrollo o construcción de software (Callejas-Cuervo et al., 2017). Esto demuestra la versatilidad de estos marcos. Existen numerosos casos de éxito de implementación de modelos como CMMI, PSP (Personal Software Process), TSP (Team Software Process), ISO 90003, ISO 15504, ITIL, COBIT, GILB, GQM, McCall, FURPS, BOEHM, DROMEY, ISO 9126, SQAE e ISO 25000 en diversas organizaciones a nivel mundial (Callejas-Cuervo et al., 2017).
+
+\begin{table}[h!]
+\centering
+\caption{Comparativa de Modelos de Calidad de Software (Proceso vs. Producto)}
+\begin{tabular}{|l|l|l|l|}
+\hline
+Modelo | Enfoque Principal | Características Clave | Fuente \\
+\hline
+\textbf{CMMI} | Proceso | Define niveles de madurez (0-5) para procesos de desarrollo de software. Optimizado para grandes organizaciones (Callejas-Cuervo et al., 2017; Ardila et al., 2013; Solarte et al., 2009; Otálora et al., 2011). | Callejas-Cuervo et al. (2017) \\
+\hline
+\textbf{ISO/IEC 15504 (SPICE)} | Proceso | Estándar para la mejora y evaluación de procesos de software, adaptable a PYMES. También con niveles de madurez (Callejas-Cuervo et al., 2017; Ardila et al., 2013; Solarte et al., 2009; Otálora et al., 2011). | Callejas-Cuervo et al. (2017) \\
+\hline
+\textbf{Modelo de McCall} | Producto | Pionero; tres etapas: factores (operación, cambio, adaptación), criterios y métricas. 11 criterios base (Asumano, 2012; IEEE, 1990; ISO, 2001; McCabe, 1976; McCall, 1977; Olsina, 2007; Slideshare, s.f.; Khosravi, 2004; Callejas-Cuervo et al., 2017). | Khosravi (2004) \\
+\hline
+\textbf{ISO/IEC 9126} | Producto | Basado en McCall; 6 características de calidad (funcionalidad, fiabilidad, usabilidad, eficiencia, mantenibilidad, portabilidad) y subfactores (Ango, 2014; Callejas-Cuervo et al., 2017). | Ango (2014) \\
+\hline
+\textbf{GQM (Goal Question Metric)} | Producto/Proceso | Metodología para definir métricas a partir de objetivos y preguntas específicas del proyecto (Fenton \& Pfleeger, 1997; Villarroel, 1999; Callejas-Cuervo et al., 2017). | Villarroel (1999) \\
+\hline
+\end{tabular}
+\end{table}
+
+\section{5. Métrica de Software: Tipologías y Aplicaciones Prácticas}
+
+Las métricas de software son medidas estadísticas que se pueden aplicar a todo el ciclo de vida del desarrollo de software con el fin de entender y mejorar los procesos y productos (Pressman, 2010; Torrell Delgado, s.f.; Slideshare, s.f.). Proporcionan una base cuantitativa para la toma de decisiones.
+
+Lem O. Ejiogu (1991) propone una clasificación de métricas que abarca diversas dimensiones del software (Michael, 1999; Ejiogu, 1991; Torrell Delgado, s.f.):
+
+\begin{itemize}
+    \item \textbf{Métricas de complejidad:} Definen la medición de la complejidad del software, incluyendo aspectos como volumen, tamaño, anidaciones, costo (estimación), agregación, configuración y flujo. Son puntos críticos en la concepción, viabilidad, análisis y diseño del software (Michael, 1999; Ejiogu, 1991; Torrell Delgado, s.f.).
+    \item \textbf{Métricas de calidad:} Definen la calidad del software. Abarcan exactitud, estructuración o modularidad, pruebas, mantenimiento, reusabilidad, cohesión del módulo, acoplamiento del módulo, entre otros. Son esenciales en el diseño, codificación y pruebas (Pressman, 2010; Torrell Delgado, s.f.; Michael, 1999; Ejiogu, 1991; Torrell Delgado, s.f.).
+    \item \textbf{Métricas de competencia:} Intentan valorar o medir la productividad de programadores o practicantes en términos de certeza, rapidez, eficiencia y competencia. Aunque es un área con intensa investigación, el progreso ha sido limitado (Michael, 1999; Ejiogu, 1991; Torrell Delgado, s.f.).
+    \item \textbf{Métricas de desempeño:} Miden la conducta de módulos y sistemas de software bajo la supervisión del sistema operativo o hardware. Generalmente se relacionan con la eficiencia de ejecución, tiempo, almacenamiento y complejidad de algoritmos computacionales (Michael, 1999; Ejiogu, 1991; Torrell Delgado, s.f.).
+    \item \textbf{Métricas estilizadas:} Son métricas de experimentación y preferencia, como el estilo de código, identación, convenciones de denominación de datos y limitaciones, que no deben confundirse con las métricas de calidad o complejidad (Michael, 1999; Ejiogu, 1991; Torrell Delgado, s.f.).
+\end{itemize}
+
+La existencia de diversas clasificaciones de métricas (Pressman, 2010; Torrell Delgado, s.f.; Michael, 1999; Ejiogu, 1991; Torrell Delgado, s.f.) es un aspecto fundamental. No existe una única métrica que capture la totalidad del software; en cambio, se requiere un conjunto de métricas para evaluar diferentes atributos de calidad (UNNE, 2014).
+
+Las métricas de tamaño son fundamentales para la estimación de costos y esfuerzos en proyectos de software (Michael, 1999; Ejiogu, 1991; Torrell Delgado, s.f.). Proporcionan una base para la planificación y asignación de recursos.
+
+\begin{itemize}
+    \item \textbf{Líneas de Código (LOC):} Es una de las unidades más comunes para medir el tamaño del software (Asumano, 2012; Arteco-Consulting, s.f.; Pressman, 2010; Caridad Simón, s.f.). Aunque es rápida de medir, su precisión puede ser limitada en términos de funcionalidad o calidad del software (Arteco-Consulting, s.f.; Pressman, 2010). La definición exacta de LOC puede variar (incluyendo/excluyendo comentarios, líneas declarativas, líneas en blanco) (Asumano, 2012; Pressman, 2010; Caridad Simón, s.f.).
+    \item \textbf{Puntos de Función (Function Points - PF):} Miden la funcionalidad ofrecida por el software (Arteco-Consulting, s.f.; Pressman, 2010). Proporcionan una visión más completa que LOC, pero requieren más tiempo y análisis (Arteco-Consulting, s.f.; Pressman, 2010). Se calculan a partir de elementos funcionales como entradas externas, salidas externas, ficheros lógicos internos, ficheros de interfaz y consultas externas (Caridad Simón, s.f.).
+    \item \textbf{Puntos de Caso de Uso (Use Case Points):} Este método mide el tamaño del software a través del número y complejidad de los casos de uso, es decir, las diferentes interacciones que los usuarios pueden realizar dentro del sistema (Arteco-Consulting, s.f.; Pressman, 2010).
+\end{itemize}
+
+Las métricas de calidad definen la calidad del software, abarcando aspectos como exactitud, estructuración, pruebas y mantenimiento (Pressman, 2010; Torrell Delgado, s.f.). Son cruciales para evaluar el cumplimiento de los requisitos y las expectativas.
+
+\begin{itemize}
+    \item \textbf{Densidad de Defectos:} Indica el número de defectos en relación con el tamaño del software, generalmente expresado como defectos por mil líneas de código (KLOC) (Arteco-Consulting, s.f.; Pressman, 2010; Caridad Simón, s.f.). Es una métrica comúnmente utilizada para medir la calidad del software (Caridad Simón, s.f.).
+    \item \textbf{Complejidad Ciclomática (Cyclomatic Complexity - CC):} Mide la complejidad del código en términos del número de caminos independientes que pueden ser seguidos durante la ejecución del software (Arteco-Consulting, s.f.; Pressman, 2010; McCabe, 1976; Olsina, 2007). Fue propuesta por McCabe (1976) y se calcula analizando las bifurcaciones y condicionales en el código fuente (Asumano, 2012; McCabe, 1976; Olsina, 2007).
+\end{itemize}
+
+Otras métricas de calidad incluyen las métricas de Chidamber y Kemerer (CK) para el diseño orientado a objetos (WMC, DIT, NOC, RFC, LCOM) (Pressman, 2010; Torrell Delgado, s.f.), y las métricas de Halstead, que miden el tamaño del software basándose en el número de operadores y operandos (Asumano, 2012; Pressman, 2010).
+
+Las métricas de proceso de software se emplean para fines estratégicos, buscando proporcionar un conjunto de indicadores que conduzcan a la mejora continua del proceso de desarrollo en su conjunto (Arteco-Consulting, s.f.; Pressman, 2010; Torrell Delgado, s.f.; Michael, 1999; Ejiogu, 1991; Torrell Delgado, s.f.). Estas métricas se recopilan a lo largo de todos los proyectos y durante largos períodos. Por otro lado, las métricas del proyecto de software son tácticas, permitiendo una evaluación continua del desarrollo en curso (Pressman, 2010; Torrell Delgado, s.f.; Michael, 1999; Ejiogu, 1991; Torrell Delgado, s.f.). Estas métricas permiten al gestor valorar el estado de un proyecto, rastrear riesgos potenciales, identificar problemas antes de que se vuelvan críticos y ajustar el flujo de trabajo o las tareas según sea necesario (Pressman, 2010; Torrell Delgado, s.f.).
+
+\section{6. Unidades de Medición en el Contexto del Software}
+
+La unidad de medida del software varía significativamente según el aspecto específico que se desee cuantificar (Arteco-Consulting, s.f.; Pressman, 2010). No existe una unidad universal que sea aplicable a todas las características del software. Por ejemplo, el tamaño puede medirse en líneas de código, mientras que la funcionalidad se mide en puntos de función.
+
+Fenton y Pfleeger (1997) sugieren que la industria del software podría adoptar una unidad de medida similar al metro cuadrado, siempre y cuando dicha unidad sea fácil de comprender, simple y consistente con la teoría de representación de la medición (Fenton \& Pfleeger, 1997). Sin embargo, debido a las características inherentes del software, sus medidas y métricas son a menudo indirectas y, por lo tanto, sujetas a debate y variaciones en su interpretación (UNNE, 2014).
+
+A continuación, se presentan ejemplos de unidades de medida comunes en la ingeniería de software, junto con una breve descripción de lo que cuantifican y, cuando aplica, sus fórmulas asociadas:
+
+\begin{itemize}
+    \item \textbf{Líneas de Código (LOC):} Utilizado para medir el tamaño del software (Arteco-Consulting, s.f.; Pressman, 2010; Caridad Simón, s.f.). Se pueden contar diferentes tipos de líneas, como líneas de procedimientos, líneas de código ejecutables o líneas de comentario (Caridad Simón, s.f.).
+    \item \textbf{Puntos de Función (PF):} Miden la funcionalidad ofrecida por el software (Arteco-Consulting, s.f.; Pressman, 2010). El cálculo de Puntos de Función ajustados (PFa) se realiza ajustando una suma de elementos funcionales (entradas, salidas, ficheros lógicos, ficheros de interfaz, consultas) por un factor de complejidad (Cp), según la fórmula: PFa = PF x Cpa, donde Cpa = 0.65 + (0.01Cp) (Caridad Simón, s.f.).
+    \item \textbf{Puntos de Caso de Uso (UCP):} Miden la complejidad del software basándose en la cantidad de interacciones de usuario (Arteco-Consulting, s.f.; Pressman, 2010).
+    \item \textbf{Densidad de Defectos:} Cuantifica la calidad del software, expresándose comúnmente como el número de defectos por mil líneas de código (Defectos/KLOC) (Arteco-Consulting, s.f.; Pressman, 2010; Caridad Simón, s.f.).
+    \item \textbf{Complejidad Ciclomática (CC):} Mide la complejidad del código en términos del número de caminos independientes que pueden ser seguidos durante la ejecución. Se calcula analizando las bifurcaciones y condicionales presentes en el código fuente (Arteco-Consulting, s.f.; Pressman, 2010; McCabe, 1976; Olsina, 2007).
+    \item \textbf{Métricas de Halstead:} Un conjunto de medidas primitivas que cuantifican el tamaño y el esfuerzo. Incluyen la longitud del programa (N = N1 + N2, donde N1 es el número total de operadores y N2 el de operandos) y el vocabulario (n = n1 + n2, donde n1 es el número de operadores únicos y n2 el de operandos únicos) (Caridad Simón, s.f.). A partir de estas, se puede estimar el esfuerzo (E) y el tiempo (T) necesario para desarrollar el software (Caridad Simón, s.f.).
+    \item \textbf{Tiempo de Recuperación:} Medido en unidades de tiempo (ej., segundos, minutos), representa el tiempo promedio de recuperación completa para un sistema después de una interrupción (Asumano, 2012; Copenhagen Business School, s.f.; IEEE, 1990; ISO, 2001; McCabe, 1976; McCall, 1977; Olsina, 2007; Slideshare, s.f.).
+    \item \textbf{Esfuerzo de Desarrollo:} Expresado en personas/año o meses/hombre (Caridad Simón, s.f.).
+    \item \textbf{Tiempo de Desarrollo:} Expresado en meses o años (Caridad Simón, s.f.).
+\end{itemize}
+
+La existencia de múltiples unidades de medida para el software (Arteco-Consulting, s.f.; Pressman, 2010; Caridad Simón, s.f.) implica que la elección de la unidad no es neutral. Cada unidad ofrece una perspectiva diferente sobre el software (tamaño, funcionalidad, calidad, esfuerzo). La selección de la unidad de medida es una decisión estratégica que debe alinearse con el objetivo de la medición.
+
+La estandarización de unidades de medida en la ingeniería de software representa un desafío significativo para el futuro de la disciplina (Fenton \& Pfleeger, 1997). A pesar de los avances, la diversidad de enfoques y la naturaleza intangible del software dificultan la adopción de una unidad universalmente aceptada. La necesidad de unificar las métricas dentro del proceso del software es una preocupación constante, especialmente en contextos donde no existe una cultura arraigada de la medición (Michael, 1999; Ejiogu, 1991; Torrell Delgado, s.f.). La falta de estandarización puede llevar a inconsistencias en las comparaciones y a dificultades en la agregación de datos a nivel de la industria. La implementación de procesos de mejora y la gestión cuantitativa de proyectos de software requieren el uso de datos tanto cualitativos como cuantitativos para la toma de decisiones efectivas (UNNE, 2014).
+
+\begin{table}[h!]
+\centering
+\caption{Métricas de Software Comunes y sus Unidades de Medida}
+\begin{tabular}{|l|l|l|l|}
+\hline
+Métrica | Unidad de Medida | Descripción de lo que mide | Fuente \\
+\hline
+\textbf{Líneas de Código (LOC)} | Líneas de Código | Tamaño del software en términos de líneas de código fuente (Asumano, 2012; Arteco-Consulting, s.f.; Pressman, 2010). | Arteco-Consulting, Caridad Simón \\
+\hline
+\textbf{Puntos de Función (PF)} | Puntos de Función | Tamaño del software en términos de funcionalidad ofrecida al usuario (Arteco-Consulting, s.f.; Pressman, 2010; Caridad Simón, s.f.). | Arteco-Consulting, Caridad Simón \\
+\hline
+\textbf{Puntos de Caso de Uso (UCP)} | Puntos de Caso de Uso | Tamaño del software basado en el número y complejidad de las interacciones de usuario (Arteco-Consulting, s.f.; Pressman, 2010). | Arteco-Consulting \\
+\hline
+\textbf{Densidad de Defectos} | Defectos/KLOC (mil líneas de código) | Calidad del software, cuantificando errores en relación con el tamaño (Arteco-Consulting, s.f.; Pressman, 2010; Caridad Simón, s.f.). | Arteco-Consulting, Caridad Simón \\
+\hline
+\textbf{Complejidad Ciclomática} | Número de caminos independientes | Complejidad del código en términos de rutas de ejecución (Arteco-Consulting, s.f.; Pressman, 2010; McCabe, 1976; Olsina, 2007). | Arteco-Consulting, Olsina \\
+\hline
+\textbf{Esfuerzo de Desarrollo} | Personas/Año o Meses/Hombre | Cantidad de trabajo humano requerido para desarrollar un proyecto (Caridad Simón, s.f.). | Caridad Simón \\
+\hline
+\textbf{Tiempo de Desarrollo} | Meses o Años | Duración estimada para completar un proyecto de software (Caridad Simón, s.f.). | Caridad Simón \\
+\hline
+\end{tabular}
+\end{table}
+
+\section{Referencias Bibliográficas}
+\addcontentsline{toc}{section}{Referencias Bibliográficas}
+
+\begin{thebibliography}{99}
+
+\bibitem{Ango2014} Ango, L. (2014). \textit{Evaluación de la calidad del software basada en la norma ISO/IEC 9126}. Universidad Nacional de Loja.
+
+\bibitem{Ardila2013} Ardila, J., Giraldo, L., \& Rojas, M. (2013). \textit{Análisis comparativo de modelos de mejora de procesos de software para Pymes}. Universidad Distrital Francisco José de Caldas.
+
+\bibitem{ArtecoConsulting} Arteco-Consulting. (s.f.). \textit{Medición software: Definición y métodos}. Recuperado de \url{https://www.arteco-consulting.com/articulos/medicion-software-definicion-metodos/}
+
+\bibitem{Asumano2012} Asumano. (2012). \textit{Métricas técnicas del software}. Recuperado de \url{https://www.uv.mx/personal/asumano/files/2012/08/MetricasTecnicas.pdf}
+
+\bibitem{CallejasCuervo2017} Callejas-Cuervo, M., Alarcón-Aldana, A. C., \& Álvarez-Carreño, A. M. (2017). Modelos de calidad del software, un estado del arte. \textit{Entramado}, \textit{13}(1), 236-250.
+
+\bibitem{CaridadSimon} Caridad Simón, S. (s.f.). \textit{Herramientas de gestión de proyectos}. Recuperado de \url{https://scaridad.com/static/descargas/tema_2_-_metricas_y_modelos_de_estimacion_del_software.pdf}
+
+\bibitem{CastanoHenriquez} Castaño-Henríquez, J. (s.f.). Métricas en la evaluación de la calidad del software: Una revisión conceptual. \textit{CESTA}. Recuperado de \url{https://revistascientificas.cuc.edu.co/CESTA/article/view/3960/3917}
+
+\bibitem{CopenhagenBusinessSchool} Copenhagen Business School. (s.f.). \textit{Paper Series, Departament of Industrial Economics y Strategy}.
+
+\bibitem{Ejiogu1991} Ejiogu, L. O. (1991). \textit{Software Engineering: The Definitive Study}. McGraw-Hill.
+
+\bibitem{FentonPfleeger1997} Fenton, N. E., \& Pfleeger, S. L. (1997). \textit{Software metrics: A rigorous and practical approach}. PWS Publishing Company.
+
+\bibitem{IEEE1990} IEEE. (1990). \textit{IEEE Standard Glossary of Software Engineering Terminology} (IEEE Std 610.12-1990).
+
+\bibitem{InstitucionBadra} Institución Badra. (s.f.). \textit{Fundamentos de la ingeniería de software}. Recuperado de \url{https://institucionbadra.org/fundamentos-de-la-ingenieria-de-software/}
+
+\bibitem{ISO2001} ISO. (2001). \textit{ISO/IEC 9126: Software engineering — Product quality}.
+
+\bibitem{Khosravi2004} Khosravi, A. (2004). \textit{Software Quality Models}. Chalmers University of Technology.
+
+\bibitem{McCabe1976} McCabe, T. J. (1976). A complexity measure. \textit{IEEE Transactions on Software Engineering}, \textit{SE-2}(4), 308-320.
+
+\bibitem{McCall1977} McCall, J. A. (1977). \textit{Factors in software quality}. General Electric.
+
+\bibitem{Michael1999} Michael, L. (1999). \textit{Software Metrics}. McGraw-Hill.
+
+\bibitem{Olsina2007} Olsina, L. (2007). Soporte de Información Contextual en un marco de Medición y Evaluación. \textit{Memorias del X Workshop Iberoamericano de Ingeniería de Requisitos y Ambientes de Software}.
+
+\bibitem{Otálora2011} Otálora, L., Rojas, J., \& Sandoval, D. (2011). \textit{Propuesta de un modelo de gestión de calidad de software para PYMES basado en ISO/IEC 15504}. Universidad Pedagógica y Tecnológica de Colombia.
+
+\bibitem{Pressman2010} Pressman, R. S. (2010). \textit{Ingeniería de software: Un enfoque práctico} (7a ed.). McGraw-Hill.
+
+\bibitem{RepositorioUNAL} Repositorio UNAL. (s.f.). Recuperado de \url{https://repositorio.unal.edu.co/bitstream/handle/unal/56459/1038405969.2016.pdf?sequence=1&isAllowed=y}
+
+\bibitem{Screpnik} Screpnik, C. (s.f.). \textit{Métricas aplicables a la evaluación de sitios e-government y su impacto social}. SEDICI.
+
+\bibitem{Slideshare} Slideshare. (s.f.). Recuperado de \url{https://es.slideshare.net/slideshow/tema-n-7-atributos-de-calidad-del-software-segn-norma-iso-25010-249672971/249672971}
+
+\bibitem{Solarte2009} Solarte, J., Mosquera, M., \& Ruiz, M. (2009). \textit{Análisis de modelos de calidad de software para Pymes}. Universidad del Cauca.
+
+\bibitem{TorrellDelgado} Torrell Delgado, A. (s.f.). \textit{Métricas de software | Software metrics}. Recuperado de \url{https://revista.jovenclub.cu/metricas-de-software-software-metrics/}
+
+\bibitem{UNNE2014} UNNE. (2014). \textit{WICC 2014 XVI Workshop de Investigadores en Ciencias de la Computación}.
+
+\bibitem{Vaneduc} Vaneduc. (s.f.). \textit{Resumen}. Recuperado de \url{https://imgbiblio.vaneduc.edu.ar/fulltext/files/TC079906.pdf}
+
+\bibitem{Villarroel1999} Villarroel, R. (1999). \textit{Goal Question Metric (GQM) approach for software measurement}. Universidad Central de Venezuela.
+
+\bibitem{Zapata} Zapata, M. (s.f.). \textit{Atributos de calidad del software}. Recuperado de \url{https://manuelzapata.co/atributos-de-calidad/}
+
+\end{thebibliography}
+
+\end{document}

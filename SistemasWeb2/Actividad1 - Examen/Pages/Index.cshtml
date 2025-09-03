@@ -1,0 +1,158 @@
+@page
+@model Actividad1.Pages.IndexModel
+@{
+    ViewData["Title"] = "Simulación de Examen - Actividad 1";
+}
+
+<h1>Simulación de Examen</h1>
+
+<div class="alert alert-info">
+    <p>Responde a las siguientes preguntas y comprueba tus conocimientos.</p>
+</div>
+
+@if (!Model.ExamCompleted)
+{
+    <div class="exam-container">
+        <h2>Cuestionario</h2>
+        <p>Total de preguntas: @Model.Questions.Count</p>
+
+        <div class="progress mb-4">
+            <div class="progress-bar" role="progressbar" style="width: @($"{Model.CurrentProgress}%");"
+                aria-valuenow="@Model.CurrentProgress" aria-valuemin="0" aria-valuemax="100">@Model.CurrentProgress%</div>
+        </div>
+
+        <form method="post">
+            @for (int i = 0; i < Model.Questions.Count; i++)
+            {
+                var question = Model.Questions[i];
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h4>@(i + 1). @question.Text</h4>
+                    </div>
+                    <div class="card-body">
+                        @if (question.Type == IndexModel.QuestionType.MultipleChoice)
+                        {
+                            @for (int j = 0; j < question.Options.Count; j++)
+                            {
+                                var option = question.Options[j];
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox"
+                                        name="q@(i)_opt@(j)"
+                                        id="q@(i)_opt@(j)"
+                                        value="true"
+                                        @(option.Selected ? "checked" : "") />
+                                    <label class="form-check-label" for="q@(i)_opt@(j)">
+                                        @option.Text
+                                    </label>
+                                </div>
+                            }
+                        }
+                        else if (question.Type == IndexModel.QuestionType.SingleChoice)
+                        {
+                            @for (int j = 0; j < question.Options.Count; j++)
+                            {
+                                var option = question.Options[j];
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio"
+                                        name="q@(i)"
+                                        id="q@(i)_opt@(j)"
+                                        value="@j"
+                                        @(option.Selected ? "checked" : "") />
+                                    <label class="form-check-label" for="q@(i)_opt@(j)">
+                                        @option.Text
+                                    </label>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            }
+
+            <button type="submit" class="btn btn-primary">Enviar Respuestas</button>
+        </form>
+    </div>
+}
+else
+{
+    <div class="results-container">
+        <h2>Resultados del Examen</h2>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <h3>Puntuación: @Model.Score de @Model.TotalPoints posibles</h3>
+                <div class="progress mb-3">
+                    <div class="progress-bar @Model.GetScoreClass()" role="progressbar"
+                        style="width: @($"{Model.ScorePercentage}%");"
+                        aria-valuenow="@Model.ScorePercentage" aria-valuemin="0" aria-valuemax="100">
+                        @Model.ScorePercentage%
+                    </div>
+                </div>
+
+                @if (Model.ScorePercentage >= 80)
+                {
+                    <div class="alert alert-success">
+                        <h4>¡Excelente trabajo!</h4>
+                        <p>Has superado el examen con una puntuación sobresaliente.</p>
+                    </div>
+                }
+                else if (Model.ScorePercentage >= 60)
+                {
+                    <div class="alert alert-info">
+                        <h4>¡Buen trabajo!</h4>
+                        <p>Has aprobado el examen, pero hay margen para mejorar.</p>
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-warning">
+                        <h4>Necesitas estudiar más</h4>
+                        <p>No has alcanzado la puntuación mínima para aprobar.</p>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <h3>Revisión de respuestas</h3>
+        @for (int i = 0; i < Model.Questions.Count; i++)
+        {
+            var question = Model.Questions[i];
+            <div class="card mb-3">
+                <div class="card-header @(question.IsCorrect ? "bg-success text-white" : "bg-danger text-white")">
+                    <h4>@(i + 1). @question.Text</h4>
+                </div>
+                <div class="card-body">
+                    <p><strong>Tus respuestas:</strong></p>
+                    <ul>
+                        @foreach (var option in question.Options.Where(o => o.Selected))
+                        {
+                            <li>@option.Text @(option.IsCorrect ? "✅" : "❌")</li>
+                        }
+                        @if (!question.Options.Any(o => o.Selected))
+                        {
+                            <li>No seleccionaste ninguna respuesta</li>
+                        }
+                    </ul>
+
+                    <p><strong>Respuestas correctas:</strong></p>
+                    <ul>
+                        @foreach (var option in question.Options.Where(o => o.IsCorrect))
+                        {
+                            <li>@option.Text</li>
+                        }
+                    </ul>
+
+                    @if (!string.IsNullOrEmpty(question.Explanation))
+                    {
+                        <div class="alert alert-info mt-2">
+                            <p><strong>Explicación:</strong> @question.Explanation</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+
+        <form method="post" asp-page-handler="Reset">
+            <button class="btn btn-primary" type="submit">Intentar de nuevo</button>
+        </form>
+    </div>
+}

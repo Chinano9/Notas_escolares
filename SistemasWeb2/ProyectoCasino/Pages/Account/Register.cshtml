@@ -1,0 +1,68 @@
+@page
+@model ProyectoCasino.Pages.Account.RegisterModel
+@{
+    ViewData["Title"] = "Registrarse";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <h2>Crear una nueva cuenta.</h2>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger" role="alert"></div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.FirstName" class="form-control" autocomplete="firstname" aria-required="true" placeholder="Nombre" />
+                <label asp-for="Input.FirstName">Nombre</label>
+                <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.LastName" class="form-control" autocomplete="lastname" aria-required="true" placeholder="Apellido" />
+                <label asp-for="Input.LastName">Apellido</label>
+                <span asp-validation-for="Input.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="nombre@ejemplo.com" />
+                <label asp-for="Input.Email">Email</label>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="contraseña" type="password" />
+                <label asp-for="Input.Password">Contraseña</label>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="confirmar contraseña" type="password" />
+                <label asp-for="Input.ConfirmPassword">Confirmar Contraseña</label>
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.DateOfBirth" class="form-control" type="date" aria-required="true" />
+                <label asp-for="Input.DateOfBirth">Fecha de Nacimiento</label>
+                <span asp-validation-for="Input.DateOfBirth" class="text-danger"></span>
+            </div>
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Registrarse</button>
+        </form>
+    </div>
+    <div class="col-md-6">
+        <section>
+            <h3>Bienvenido al Casino Online</h3>
+            <hr />
+            <div>
+                <p>Al registrarte en nuestro casino online, tendrás acceso a todos nuestros juegos y servicios.</p>
+                <p>Ya tienes una cuenta? <a asp-page="./Login">Inicia sesión aquí</a></p>
+                <ul class="mt-3">
+                    <li>Juegos de Casino</li>
+                    <li>Bonos exclusivos</li>
+                    <li>Torneos y eventos especiales</li>
+                    <li>Servicio de atención al cliente 24/7</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

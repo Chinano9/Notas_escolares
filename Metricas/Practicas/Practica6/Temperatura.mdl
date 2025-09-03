@@ -1,0 +1,94 @@
+{UTF-8}
+Flujo de agua=(Temperatura deseada-Temperatura)/Litros por segundo
+	~	
+	~		|
+
+Litros por segundo=20
+	~	
+	~		|
+
+Temperatura deseada=35
+	~	
+	~		|
+
+Temperatura= INTEG (Flujo de agua,
+		1)
+	~	
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 300
+	~	Second
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Second
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP 
+	~	Second [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 1
+	~	Second [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$-1--1--1,0,|12||-1--1--1|-1--1--1|-1--1--1|-1--1--1|-1--1--1|96,96,100,2
+10,1,Temperatura,413,68,50,26,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,2,48,301,168,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,3,5,2,100,0,0,22,0,192,0,-1--1--1,,1|(352,168)|
+1,4,5,1,4,0,0,22,0,192,0,-1--1--1,,1|(399,127)|
+11,5,0,399,168,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,6,Flujo de agua,399,202,51,26,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,7,1,6,1,0,0,0,0,192,0,-1--1--1,,1|(496,96)|
+10,8,Temperatura deseada,394,308,58,26,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,9,Litros por segundo,587,274,50,26,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,10,9,6,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,11,8,6,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+///---\\\
+:L<%^E!@
+1:Temperatura deseada.vdfx
+4:Time
+5:Temperatura
+9:Temperatura deseada
+19:100,0
+24:0
+25:300
+26:300
+23:0
+15:0,0,0,0,0,0
+27:0,
+34:0,
+42:0
+72:0
+73:0
+95:0
+96:0
+97:0
+77:0
+78:0
+102:1
+93:0
+94:0
+92:0
+91:0
+90:0
+87:0
+75:
+43:
+103:8,8,8,3,8
+105:0,0,0,0,0,0,0,0,0,0
+104:Vensim Sans|12||0-0-0|0-0-0|-1--1--1|0-0-255|192-192-192|-1--1--1
