@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <title>setInterval - Asincronía</title>
+    </head>
+    <body>
+        <h1>Ejemplo: setInterval()</h1>
+        <img
+            id="imagen"
+            alt="imagen aleatoria"
+            src="https://picsum.photos/200/300?random=1"
+        />
+        <button id="start">Iniciar carrusel</button>
+        <button id="stop">Detener carrusel</button>
+
+        <script>
+            const start = document.getElementById("start");
+            const stop = document.getElementById("stop");
+            const imagen = document.getElementById("imagen");
+
+            let contador = 0;
+
+            let intervaloId = null;
+
+            start.addEventListener("click", function () {
+                if (intervaloId !== null) return;
+                intervaloId = setInterval(function () {
+                    contador += 1; // se cachea la imagen si no pongo esto
+                    imagen.srcset = `https://picsum.photos/200/300?random=${contador}`;
+                }, 2000);
+            });
+
+            stop.addEventListener("click", function () {
+                if (intervaloId !== null) {
+                    clearInterval(intervaloId);
+                    intervaloId = null;
+                }
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Evento submit</title>
+    </head>
+    <body>
+        <h1>Evento submit</h1>
+        <form id="formulario">
+            <input type="text" id="nombre" placeholder="Nombre" />
+            <button type="submit">Enviar</button>
+        </form>
+        <p id="resultado"></p>
+        <script>
+            const form = document.getElementById("formulario");
+
+            const resultado = document.getElementById("resultado");
+            let nombres = [];
+            form.addEventListener("submit", function (evento) {
+                evento.preventDefault();
+                const nombre = document.getElementById("nombre").value;
+                resultado.textContent = `Hola, ${nombre}! Has enviado el formulario.`;
+                nombres.push(nombre);
+                console.log("Nombres enviados:", nombres);
+            });
+        </script>
+    </body>
+</html>

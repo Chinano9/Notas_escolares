@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Evento mouseover</title>
+    </head>
+    <style>
+        #queso {
+            position: relative;
+            top: 0;
+        }
+    </style>
+    <body>
+        <h1>Evento mouseover</h1>
+        <div
+            id="caja"
+            style="
+                width: 200px;
+                height: 100px;
+                background: #ccc;
+                line-height: 100px;
+                text-align: center;
+            "
+        >
+            <p>Pasa el mouse aquí</p>
+            <div id="queso" style="font-size: 18px">🧀</div>
+        </div>
+        <p id="mensaje"></p>
+        <script>
+            const caja = document.getElementById("caja");
+            const queso = document.getElementById("queso");
+            const mensaje = document.getElementById("mensaje");
+            caja.addEventListener("mouseover", function () {
+                mensaje.textContent =
+                    "El raton está sobre la caja, querra el queso?";
+            });
+
+            queso.addEventListener("mouseover", function () {
+                const randomX = Math.floor(
+                    Math.random() * (window.innerWidth - 100),
+                );
+                const randomY = Math.floor(
+                    Math.random() * (window.innerHeight - 100),
+                );
+                queso.style.transform = `translate(${randomX}px, ${randomY}px)`;
+            });
+
+            caja.addEventListener("mouseout", function () {
+                mensaje.textContent = "No alcanzo al queso... :c";
+            });
+        </script>
+    </body>
+</html>

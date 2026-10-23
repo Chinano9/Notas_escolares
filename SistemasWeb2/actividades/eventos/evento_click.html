@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Evento click</title>
+    </head>
+    <body>
+        <h1>Evento click</h1>
+        <button id="btn">Haz clic aquí</button>
+        <p id="resultado"></p>
+        <script>
+            const boton = document.getElementById("btn");
+            const audio = new Audio(
+                "https://www.myinstants.com/media/sounds/yippee-tbh.mp3",
+            );
+            audio.preload = "auto";
+            audio.controls = true;
+            const resultado = document.getElementById("resultado");
+            boton.addEventListener("click", function () {
+                audio.play();
+
+                document.body.style.backgroundImage =
+                    "linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet)";
+            });
+        </script>
+    </body>
+</html>

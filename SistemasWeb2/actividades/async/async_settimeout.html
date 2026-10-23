@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <title>setTimeout - Asincronía</title>
+    </head>
+    <body>
+        <h1>Ejemplo: setTimeout()</h1>
+        <button id="btn">Iniciar</button>
+        <p id="estado">Estado: esperando...</p>
+
+        <script>
+            const btn = document.getElementById("btn");
+            const estado = document.getElementById("estado");
+
+            btn.addEventListener("click", function () {
+                estado.textContent =
+                    "Estado: ejecutando... (espera 9 segundos)";
+                setTimeout(function () {
+                    estado.textContent =
+                        "Estado: ¡Listo! (se ejecutó después de 9s)";
+                }, 9000);
+            });
+        </script>
+    </body>
+</html>

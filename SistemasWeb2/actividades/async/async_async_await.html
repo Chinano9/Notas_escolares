@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <title>async/await - Asincronía</title>
+    </head>
+    <body>
+        <h1>Ejemplo: async/await</h1>
+        <button id="btn">Cargar post (API)</button>
+        <pre id="salida">Salida: ---</pre>
+
+        <script>
+            const btn = document.getElementById("btn");
+            const salida = document.getElementById("salida");
+
+            async function cargarPost() {
+                try {
+                    salida.textContent = "Salida: cargando...";
+                    const resp = await fetch(
+                        " https://dog.ceo/api/breeds/list/all",
+                    );
+                    const data = await resp.json();
+                    salida.textContent =
+                        "Salida:\n" + JSON.stringify(data, null, 2);
+                } catch (error) {
+                    salida.textContent = "Error: " + error;
+                }
+            }
+
+            btn.addEventListener("click", cargarPost);
+        </script>
+    </body>
+</html>

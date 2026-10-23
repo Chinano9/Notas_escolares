@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Fetch API - Asincronía</title>
+    </head>
+    <body>
+        <h1>Ejemplo: Fetch API</h1>
+        <button id="btn">Cargar razas de perros (API)</button>
+        <pre id="salida">Salida: ---</pre>
+
+        <script>
+            const btn = document.getElementById("btn");
+            const salida = document.getElementById("salida");
+
+            btn.addEventListener("click", function () {
+                salida.textContent = "Salida: cargando...";
+                fetch(" https://dog.ceo/api/breeds/list/all")
+                    .then(function (respuesta) {
+                        return respuesta.json();
+                    })
+                    .then(function (data) {
+                        salida.textContent =
+                            "Salida:\n" + JSON.stringify(data, null, 2);
+                    })
+                    .catch(function (error) {
+                        salida.textContent = "Error: " + error;
+                    });
+            });
+        </script>
+    </body>
+</html>

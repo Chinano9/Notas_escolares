@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Promesas - Asincronía</title>
+    </head>
+    <body>
+        <h1>Ejemplo: Promesas</h1>
+        <button id="btn">Ejecutar Promesa</button>
+        <p id="resultado">Resultado: ---</p>
+
+        <script>
+            const btn = document.getElementById("btn");
+            const resultado = document.getElementById("resultado");
+
+            function tareaAsincrona() {
+                return new Promise(function (resolve, reject) {
+                    setTimeout(function () {
+                        const exito = false; // cambia a false para simular error
+                        if (exito) resolve("Promesa cumplida, felicidades ");
+                        else
+                            reject(
+                                "Promesa rechazada como las que haces en año nuevo",
+                            );
+                    }, 1500);
+                });
+            }
+
+            btn.addEventListener("click", function () {
+                resultado.textContent = "Resultado: ejecutando...";
+                tareaAsincrona()
+                    .then(function (mensaje) {
+                        resultado.textContent = "Resultado: " + mensaje;
+                    })
+                    .catch(function (error) {
+                        resultado.textContent = "Resultado: " + error;
+                    });
+            });
+        </script>
+    </body>
+</html>

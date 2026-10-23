@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Evento keydown</title>
+    </head>
+    <body>
+        <h1>Evento keydown</h1>
+        <input type="text" id="campo" placeholder="Escribe algo" />
+        <p id="salida"></p>
+        <script>
+            const campo = document.getElementById("campo");
+            const salida = document.getElementById("salida");
+            const audio = new Audio(
+                "https://www.myinstants.com/media/sounds/yippee-tbh.mp3",
+            );
+            let texto = "";
+            campo.addEventListener("keydown", function (evento) {
+                texto += evento.key;
+                salida.textContent = texto;
+
+                if (texto.includes("yippie")) {
+                    audio.play();
+                    backgroundImage =
+                        "linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet)";
+                    texto = "";
+                }
+            });
+        </script>
+    </body>
+</html>

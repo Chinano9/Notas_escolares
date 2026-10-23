@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <title>addEventListener</title>
+    </head>
+    <body>
+        <h1>addEventListener</h1>
+        <button id="boton">Presióname</button>
+        <script>
+            const boton = document.getElementById("boton");
+            function saludar() {
+                alert("Evento ejecutado con addEventListener");
+            }
+
+            function arcoiris() {
+                document.body.style.backgroundImage =
+                    "linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet)";
+            }
+            boton.addEventListener("click", arcoiris);
+        </script>
+    </body>
+</html>
